@@ -1,21 +1,20 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-class User():
-	def __init__(self, first_name, last_name, email, password):
+from app import db
+
+class User(db.Model):
+	__tablename__ = "users"
+	user_id = db.Column(db.Integer, primary_key = True)
+	first_name = db.Column(db.String(60))
+	last_name = db.Column(db.String(60))
+	email = db.Column(db.String(60), index = True, unique = True)
+	password_hash = db.Column(db.String(128))
+
+	def __init__(self, user_id, first_name, last_name, email, password):
+		self.user_id = user_id
 		self.first_name = first_name
 		self.last_name = last_name
 		self.email = email
-		self.password = password
-
-	def __repr__(self):
-		return('First Name: {0} /n Last Name: {1} /n Email: {2}'.format(self.first_name, self.last_name, self.email))
-
-class User(db.model):
-	__tablename__ = "users"
-	user_id = db.column(db.Integer, primary_key = True)
-	first_name = db.column(db.string(60))
-	last_name = db.column(db.string(60))
-	email = db.column(db.string(60), index = True, unique = True)
-	password_hash = db.column(db.string(128))
+		self.password_hash = generate_password_hash(password)
 
 	@property
 	def password(self):
