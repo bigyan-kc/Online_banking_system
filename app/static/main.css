@@ -120,3 +120,20 @@ input[type="submit"]:active {
   top:3px;
   box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d, 0px 5px 3px #999;
 }
+
+/*#message{
+  display : none;
+  background : #f1f1f1;
+  color : #000;
+  position : relative;
+  padding : 20px;
+  margin-top : 10px;
+}*/
+
+p#message{
+  /*display : none;*/
+  background : #f1f1f1;
+  color : #000;
+  /*pad*/
+  font-size : 18px;
+}

@@ -9,12 +9,12 @@ class User(db.Model):
 	email = db.Column(db.String(60), index = True, unique = True)
 	password = db.Column(db.String(128))
 
-	# def __init__(self, user_id, first_name, last_name, email, password):
-	# 	#self.user_id = user_id
-	# 	self.first_name = first_name
-	# 	self.last_name = last_name
-	# 	self.email = email
-	# 	self.password_hash = generate_password_hash(password)
+	def __init__(self, first_name, last_name, email, password):
+		# self.user_id = user_id
+		self.first_name = first_name
+		self.last_name = last_name
+		self.email = email
+		self.password = generate_password_hash(password)
 
 	# @property
 	# def password(self):
