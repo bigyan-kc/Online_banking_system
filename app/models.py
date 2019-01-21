@@ -16,6 +16,9 @@ class User(db.Model):
 		self.email = email
 		self.password = generate_password_hash(password)
 
+	def check_password(self, password):
+		return check_password_hash(self.password, password)
+
 	# @property
 	# def password(self):
 	# 	raise AttributeError("password is not a readable")

@@ -4,10 +4,12 @@
 	<link rel = "stylesheet" type = "text/css" href = "../static/main.css">
 <body>
 <div class = "login">
-	<input type = "text" placeholder = "Username" id = "username">
-	<input type = "password" placeholder = "Password" id = "password">
+<form method = 'POST' action = '/user-login'>
+	<input type = "text" placeholder = "Email" id = "username" name = "email">
+	<input type = "password" placeholder = "Password" id = "password" name = "password">
 	<a href = {{url_for('new_form')}} class = "forgot"> Not a member</a>
 	<input type = "submit" value = "Sign In">
+</form>
 </div>
 <div class = "shadow"></div>
 </body>

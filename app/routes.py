@@ -18,4 +18,12 @@ def add_member():
 	db.session.add(user)
 	db.session.commit()
 	return("Successfully written to database")
-	
+
+@app.route("/user-login", methods = ['POST'])
+def do_user_login():
+	user = User.query.filter_by(email = request.form['email']).first()
+	#return user.check_password(request.form['password'])
+	if user is None or not user.check_password(request.form['password']):
+		return("Invalid user")
+	else:
+		return("User authenticated")
