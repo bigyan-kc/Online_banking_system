@@ -6,14 +6,17 @@ from app import db
 @app.route("/")
 def index():
 	if 'username' in session:
-		return("Logged in as {}".format(session['username']))
+		return render_template("dashboard.html")
 	else:
 		return redirect(url_for('do_login'))
 	# return render_template("index.html")
 
 @app.route("/login")
 def do_login():
-	return render_template("index.html")
+	if 'username' in session:
+		return render_template("dashboard.html")
+	else:
+		return render_template("index.html")
 
 @app.route("/new_member")
 def new_form():
@@ -25,7 +28,7 @@ def add_member():
 	#add user to the database
 	db.session.add(user)
 	db.session.commit()
-	return("Successfully written to database")
+	return redirect(url_for('do_login'))
 
 @app.route("/user-login", methods = ['POST'])
 def do_user_login():
@@ -33,7 +36,11 @@ def do_user_login():
 	#return user.first_name
 	#return user.check_password(request.form['password'])
 	if user is None or not user.check_password(request.form['password']):
-		return("Invalid user")
+		return "Invalid user"
 	else:
 		session['username'] = user.first_name
-		return("User authenticated")
+		return render_template("dashboard.html")
+@app.route("/logout")
+def logout():
+	session.pop('username', None)
+	return redirect(url_for('do_login'))

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../static/dashboard.css">
+	<title>Online Banking System</title>
+</head>
+<body>
+	<div id = wrapper>
+		<div id = "header">Header</div>
+		<div id = "sidebar-left">Left bar</div>
+		<div id = "main">
+			welcome {{session['username']}}
+			<a href = {{url_for('logout')}}> Log Out </a></div>
+		<div id = "footer">Footer</div>
+	</div>
+</body>
+</html>
